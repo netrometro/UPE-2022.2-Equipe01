@@ -4,7 +4,7 @@ services:
   db-postgres-natubanho:
     image: postgres:alpine
     ports:
-      - "5435:5433"
+      - "5437:5432"
     container_name: "db-postgres-natubanho"
     restart: always
     volumes:
