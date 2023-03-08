@@ -8,25 +8,27 @@ datasource db {
 }
 
 model Role {
-  id    String   @id @default(uuid())
-  name  String
+  id      String   @id @default(uuid())
+  name    String
 
   @@map("roles")
-  users User[]
 }
 
 model User {
   id        String   @id @default(uuid())
   name      String
-  email     String    @unique
+  email     String   @unique
   password  String
-  role      Role?    @relation(fields: [roleId], references: [id])
+  role      RoleEnum @default(CLIENTE)
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
 
   @@map("users")
-  roleId    String?
-
 }
 
+enum RoleEnum {
+  ADMIN
+  GERENTE
+  CLIENTE
+}
