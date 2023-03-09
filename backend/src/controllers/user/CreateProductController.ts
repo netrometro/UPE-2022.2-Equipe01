@@ -1,18 +1,14 @@
-import { Product } from "@prisma/client";
-import prismaClient from "../../prisma";
-import { ProductDTO } from "../../services/users/CreateProductDTO";
+import { Request, Response } from "express";
+import { CreateProductServices } from "../../services/users/CreateProductServices";
 
 export class CreateProductController {
-    async execute({name, price, quantity}: ProductDTO): Promise<Product> {
-        //Criar o produto.
-        const product = await prismaClient.product.create({
-            data: {
-                name,
-                price,
-                quantity
-            }
-        });
+    async handle(req: Request, res: Response) {
+        const {name, price, quantity} = req.body;
 
-        return product;
+        const createProductServices = new CreateProductServices();
+
+        const result = await createProductServices.execute({name, price, quantity});
+
+        return res.status(201).json(result);
     }
 }
