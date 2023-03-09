@@ -1,15 +1,17 @@
-import prismaClient from '../../prisma'
-import { hash } from 'bcryptjs'
+import prismaClient from '../../prisma';
+import { hash } from 'bcryptjs';
+import { RoleEnum } from '../../enums/RoleEnum';
+import { mapRoleEnum } from '../../utils/mapRoleEnum'
 
 interface UserRequest {
-    name:     string;
-    email:    string;
+    name: string;
+    email: string;
     password: string;
-    role?:    string;
+    roleEnum?: RoleEnum;
 }
 
 export class CreateUserService {
-    async execute({ name, email, password, role }: UserRequest) {
+    async execute({ name, email, password, roleEnum }: UserRequest) {
         if (!email) {
             throw new Error("E-mail inválido");
         }
@@ -26,10 +28,12 @@ export class CreateUserService {
 
         let userRole;
 
-        if (role) {
+        if (roleEnum) {
+            const mappedRole = mapRoleEnum(roleEnum);
+
             const roleExists = await prismaClient.role.findFirst({
                 where: {
-                    name: role,
+                    name: mappedRole,
                 },
             });
 
@@ -40,11 +44,7 @@ export class CreateUserService {
                     },
                 };
             } else {
-                userRole = {
-                    create: {
-                        name: role,
-                    },
-                };
+                userRole =  mappedRole
             }
         }
 
