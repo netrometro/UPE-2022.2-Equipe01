@@ -1,27 +1,60 @@
+import { useState, FormEvent, useContext } from 'react'
+
 import Head from 'next/head'
 import styles from '../../../styles/Home.module.scss'
 import Image from 'next/image'
 
-import { Input } from '../../components/ui/Input/index';
-import { Button } from '../../components/ui/Button';
-import { Select } from '../../components/ui/Select';
+import { Input } from '../../components/ui/Input/index'
+import { Button } from '../../components/ui/Button'
+import { Select } from '../../components/ui/Select'
 
 import logoImg from '../../../public/logo.svg'
 
-import Link from 'next/link';
-import { useState } from 'react'
+import Link from 'next/link'
+
+import { RoleEnum } from '../../models/enum/RoleEnum'
+
+import { AuthContext } from '../../contexts/AuthContext'
+
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
-  const [selectedOption, setSelectedOption] = useState('')
+  const { signUp } = useContext(AuthContext)
 
-  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(event.target.value)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [roleEnum, setRoleEnum] = useState('')
+
+  const [loading, setLoading] = useState(false)
+
+  async function handleSignUp(event: FormEvent) {
+     event.preventDefault()
+
+     if(name === '' || email === '' || password === ''){
+      toast.warning('Preencha todos os campos')
+      return
+     }
+
+     setLoading(true)
+
+     let data = {
+      name,
+      email,
+      password,
+      roleEnum: roleEnum as RoleEnum
+     }
+
+     await signUp(data)
+
+     setLoading(false)
+
   }
 
   return (
     <>
       <Head>
-        <title>Faça seu cadastro agora</title>
+        <title>Faça seu cadastro agora!</title>
       </Head>
       <div className={styles.containerCenter}>
         <Image src={logoImg} alt="natubanho" />
@@ -29,22 +62,33 @@ export default function SignUp() {
        <div className={styles.login}>
             <h1>Criando sua conta</h1>
 
-            <form>
+            <form onSubmit={handleSignUp}>
                 <Input
                     placeholder='Digite o seu nome'
                     type="text"
+                    value={name}
+                    onChange={ (e) => setName(e.target.value) }
                 />
                 <Input
                     placeholder='Digite seu e-mail'
                     type="text"
+                    value={email}
+                    onChange={ (e) => setEmail(e.target.value) }
                 />
                 <Input
                     placeholder='Digite sua senha'
                     type="password"
+                    value={password}
+                    onChange={ (e) => setPassword(e.target.value) }
                 />
-                <Select
-                    options={['Cliente', 'Gerente', 'Admin']}
-                    onChange={handleOptionChange}
+                <Select className={styles.select}
+                  options={[
+                    RoleEnum.ADMIN,
+                    RoleEnum.CLIENTE,
+                    RoleEnum.GERENTE,
+                  ]}
+                  value={roleEnum}
+                  onChange={(e) => setRoleEnum(e.target.value)}
                 />
 
                 <Button

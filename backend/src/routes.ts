@@ -9,8 +9,8 @@ import { DeleteProductController } from './controllers/user/DeleteProductControl
 const router = Router()
 
 // Users
-router.post('/users', new CreateUserController().handle)
-router.post('/login', new AuthUserController().handle)
+router.post('/api/users', new CreateUserController().handle)
+router.post('/api/login', new AuthUserController().handle)
 
 // Products
 router.post('/product', new CreateProductController().handle)
