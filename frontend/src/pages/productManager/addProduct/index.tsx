@@ -5,34 +5,45 @@ import React from 'react'
 
 import { toast } from 'react-toastify'
 import { AuthContext } from '../../../contexts/AuthContext'
+import axios from 'axios'
 
 function AddProduct() {
-  const { signIn } = useContext(AuthContext)
+  // const { signIn } = useContext(AuthContext)
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
 
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
-  async function handleLogin(event: FormEvent) {
-    event.preventDefault()
+  // async function handleLogin(event: FormEvent) {
+  //   event.preventDefault()
 
-    if(email == '' || password === ''){
-      toast.warning('Preencha todos os campos')
-      return
-    }
+  //   if(email == '' || password === ''){
+  //     toast.warning('Preencha todos os campos')
+  //     return
+  //   }
 
-    setLoading(true)
+  //   setLoading(true)
 
-    let data = {
-      email,
-      password
-    }
+  //   let data = {
+  //     email,
+  //     password
+  //   }
 
-    await signIn(data)
+  //   await signIn(data)
 
-    setLoading(false)
-  }
+  //   setLoading(false)
+  // }
+  axios.post('/users', {
+    name: 'John Doe',
+    email: 'john@example.com',
+  })
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
   
   return (
     <>
