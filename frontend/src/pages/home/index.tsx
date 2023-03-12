@@ -5,6 +5,7 @@ function home() {
   return (
     <div>
         <Card />
+        
     </div>
   )
 }
