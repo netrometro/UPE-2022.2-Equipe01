@@ -1,7 +1,39 @@
+import { useState, FormEvent, useContext } from 'react'
+
 import Head from 'next/head'
 import React from 'react'
 
-function addProduct() {
+import { toast } from 'react-toastify'
+import { AuthContext } from '../../../contexts/AuthContext'
+
+function AddProduct() {
+  const { signIn } = useContext(AuthContext)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [loading, setLoading] = useState(false)
+
+  async function handleLogin(event: FormEvent) {
+    event.preventDefault()
+
+    if(email == '' || password === ''){
+      toast.warning('Preencha todos os campos')
+      return
+    }
+
+    setLoading(true)
+
+    let data = {
+      email,
+      password
+    }
+
+    await signIn(data)
+
+    setLoading(false)
+  }
+  
   return (
     <>
     <Head>
@@ -20,4 +52,4 @@ function addProduct() {
   )
 }
 
-export default addProduct
+export default AddProduct
