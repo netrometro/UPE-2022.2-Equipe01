@@ -16,6 +16,8 @@ import { RoleEnum } from '../../models/enum/RoleEnum'
 
 import { AuthContext } from '../../contexts/AuthContext'
 
+import { toast } from 'react-toastify'
+
 export default function SignUp() {
   const { signUp } = useContext(AuthContext)
 
@@ -30,7 +32,7 @@ export default function SignUp() {
      event.preventDefault()
 
      if(name === '' || email === '' || password === ''){
-      alert('teste')
+      toast.warning('Preencha todos os campos')
       return
      }
 

@@ -5,7 +5,8 @@ import { api } from '../services/apiClient'
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import Router from 'next/router'
 import { RoleEnum } from '../models/enum/RoleEnum'
-import SignUp from '../pages/signup/index';
+
+import { toast } from 'react-toastify'
 
 type AuthContextData = {
     user: UserProps;
@@ -67,11 +68,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
             })
 
             api.defaults.headers['Authorization'] = `Bearer ${token}`
-            console.log(token)
+            //console.log(token)
+
+            toast.success('Logado com sucesso!')
 
             Router.push('/dashboard')
 
         }catch(err){
+            toast.error('Erro ao acessar')
             console.log('erro ao acessar', err)
         }
     }
@@ -86,12 +90,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 roleEnum
             })
 
-            console.log('Cadastrado com sucesso!')
+            toast.success('Conta criada com sucesso!')
 
             Router.push('/')
 
         }catch(err){
-
+            toast.error('Erro ao cadastrar!')
         }
     }
 
