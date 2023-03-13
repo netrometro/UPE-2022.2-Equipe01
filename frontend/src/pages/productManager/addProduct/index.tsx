@@ -15,15 +15,14 @@ function AddProduct() {
 
   // const [loading, setLoading] = useState(false)
 
-  // async function handleLogin(event: FormEvent) {
-  //   event.preventDefault()
+     try{
 
-  //   if(email == '' || password === ''){
-  //     toast.warning('Preencha todos os campos')
-  //     return
-  //   }
+        var response = await api.post('/api/product', data)
+        console.log(response);
 
-  //   setLoading(true)
+      } catch(err) {
+        console.log({err})
+     }
 
   //   let data = {
   //     email,
