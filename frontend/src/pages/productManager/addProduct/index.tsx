@@ -2,47 +2,53 @@ import { useState, FormEvent, useContext } from 'react'
 
 import Head from 'next/head'
 import React from 'react'
+import { api } from '../../../services/apiClient'
+
 
 import { toast } from 'react-toastify'
-import { AuthContext } from '../../../contexts/AuthContext'
-import axios from 'axios'
+import { ProductContext } from '../../../contexts/Teste'
+import { Button } from '../../../components/ui/Button'
+import { Input } from '../../../components/ui/Input'
 
-function AddProduct() {
-  // const { signIn } = useContext(AuthContext)
+export default function AddProduct() {
+  const { addProduct } = useContext(ProductContext)
 
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [quantity, setquantity] = useState('')
 
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
+  
+  async function handleProductUp(event: FormEvent) {
+     event.preventDefault()
 
+     if(name === '' || price === '' || quantity === ''){
+      toast.warning('Preencha todos os campos')
+      return
+     }
+
+     setLoading(true)
+
+     let data = {
+      name,
+      price: Number(price),
+      quantity: Number(quantity)
+     }
+
+    //  await addProduct(data)
      try{
 
         var response = await api.post('/api/product', data)
         console.log(response);
-
+        
       } catch(err) {
         console.log({err})
      }
 
-  //   let data = {
-  //     email,
-  //     password
-  //   }
 
-  //   await signIn(data)
+     setLoading(false)
 
-  //   setLoading(false)
-  // }
-  axios.post('/users', {
-    name: 'John Doe',
-    email: 'john@example.com',
-  })
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => {
-      console.error(error)
-    })
+  }
   
   return (
     <>
@@ -83,5 +89,3 @@ function AddProduct() {
     </>
   )
 }
-
-export default AddProduct
