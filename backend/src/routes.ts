@@ -9,12 +9,12 @@ import { DeleteProductController } from './controllers/user/DeleteProductControl
 const router = Router()
 
 // Users
-router.post('/users', new CreateUserController().handle)
-router.post('/login', new AuthUserController().handle)
+router.post('/api/users', new CreateUserController().handle)
+router.post('/api/login', new AuthUserController().handle)
 
 // Products
-router.post('/product', new CreateProductController().handle)
-router.get("/getproducts", new GetProductController().handle)
-router.delete("/deleteproduct", new DeleteProductController().handle)
+router.post('/api/product', new CreateProductController().handle)
+router.get("/api/getproducts", new GetProductController().handle)
+router.delete("/api/deleteproduct", new DeleteProductController().handle)
 
 export { router }
