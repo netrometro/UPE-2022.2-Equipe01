@@ -9,26 +9,32 @@ interface ProductDTO {
 
 export class CreateProductService {
     async execute({name, price, quantity}: ProductDTO): Promise<Product> {
-        // Verificar se já existe
-        const productAlreadyExists = await prismaClient.product.findUnique({
-            where: {
-                name
+        try {
+            // Verificar se já existe
+            const productAlreadyExists = await prismaClient.product.findUnique({
+                where: {
+                    name
+                }
+            });
+    
+            if (productAlreadyExists != null) {
+                // Erro
+                throw new Error("Este produto já está cadastrado.");
             }
-        });
+            //Criar o produto.
+            const product = prismaClient.product.create({
+                data: {
+                    name,
+                    price,
+                    quantity
+                }
+            });
+    
+            return product;
 
-        if (productAlreadyExists) {
-            // Erro
-            throw new Error("Este produto já está cadastrado.");
+        } catch(err) {
+            
+            throw new Error('deu erro aqui')
         }
-        //Criar o produto.
-        const product = await prismaClient.product.create({
-            data: {
-                name,
-                price,
-                quantity
-            }
-        });
-
-        return product;
     }
 }
