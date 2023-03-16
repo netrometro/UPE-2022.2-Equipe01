@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useState, useEffect } from 'react'
 
 import { api } from '../services/apiClient'
 
@@ -20,6 +20,7 @@ type UserProps = {
     id: string;
     name: string;
     email: string;
+    roleEnum: RoleEnum;
 }
 
 type SignInProps = {
@@ -53,6 +54,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<UserProps>()
     const isAuthenticated = !!user;
 
+    useEffect(() => {
+
+        // tentar pegar o cookie
+        const { '@nextauth.token': token } = parseCookies()
+
+        if(token){
+            api.get('/me').then(response => {
+                const { id, name, email, roleEnum } = response.data
+
+            setUser({
+                id,
+                name,
+                email,
+                roleEnum
+            })
+
+            })
+            .catch(() => {
+                // se deu erro desloga
+                signOut()
+            })
+        }
+
+    }, [])
+
     async function signIn({ email, password }: SignInProps) {
         try{
             const response = await api.post('/api/login', {
@@ -62,7 +88,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
             //console.log(response.data)
             const { token } = response.data
-            setCookie(undefined, 'nextauth', token, {
+            setCookie(undefined, '@nextauth.token', token, {
                 maxAge: 60 * 60 * 24 * 30, // expirar em 1 mes
                 path: '/'
             })

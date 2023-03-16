@@ -92,10 +92,10 @@ export default function SignUp() {
                 />
 
                 <Button
-                type="submit"
-                loading={false}
-                >
-                Cadastrar
+                  type="submit"
+                  loading={false}
+                  >
+                  Cadastrar
                 </Button>
 
             </form>
