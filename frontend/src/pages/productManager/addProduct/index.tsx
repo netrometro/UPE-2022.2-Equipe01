@@ -10,6 +10,9 @@ import { ProductContext } from '../../../contexts/Teste'
 import { Button } from '../../../components/ui/Button'
 import { Input } from '../../../components/ui/Input'
 
+// TESTE
+//TEstando
+
 export default function AddProduct() {
   const { addProduct } = useContext(ProductContext)
 
