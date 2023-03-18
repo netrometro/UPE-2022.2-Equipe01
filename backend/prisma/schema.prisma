@@ -24,6 +24,8 @@ model User {
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
 
+  // car Cart[]
+
   @@map("users")
 }
 
@@ -32,11 +34,36 @@ enum RoleEnum {
   GERENTE
   CLIENTE
 }
+
 model Product {
-  id       String @id @default(uuid())
-  name     String @unique
-  price    Float
-  quantity Int
+  id            String @id @default(uuid())
+  name          String @unique
+  price         Float
+  quantity      Int
+  // cart          Cart[]
+  // productOnCart ProductOnCart[]
+
 
   @@map("product")
 }
+
+// model Cart {
+//   id          String @id @default(uuid())
+//   price       Float
+//   product     Product @relation(fields: [productId], references: [id])
+//   productId   String
+//   user        User @relation(fields: [userId], references: [id])
+//   userId      String
+//   products    ProductOnCart[]
+// }
+
+// model ProductOnCart {
+//   id         Int      @id @default(autoincrement())
+//   createdAt  DateTime @default(now())
+//   updatedAt  DateTime @updatedAt
+//   cart       Cart     @relation(fields: [cartId], references: [id])
+//   cartId     String
+//   product    Product  @relation(fields: [productId], references: [id])
+//   productId  String
+//   quantity   Int
+// }
