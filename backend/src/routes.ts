@@ -6,6 +6,7 @@ import { CreateProductController } from './controllers/products/CreateProductCon
 import { GetProductController } from './controllers/products/GetProductController'
 import { DeleteProductController } from './controllers/products/DeleteProductController'
 import { CreateCartController } from './controllers/cart/CreateCartController'
+import { GetCartController } from './controllers/cart/GetCartController'
 
 const router = Router()
 
@@ -20,4 +21,6 @@ router.delete("/api/deleteproduct", new DeleteProductController().handle)
 
 // Cart
 router.post('/api/addcart', new CreateCartController().handle)
+router.get("/api/getcart", new GetCartController().handle)
+
 export { router }
