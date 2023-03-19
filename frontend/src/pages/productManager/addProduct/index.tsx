@@ -6,12 +6,12 @@ import { api } from '../../../services/apiClient'
 
 
 import { toast } from 'react-toastify'
-import { ProductContext } from '../../../contexts/Teste'
+// import { ProductContext } from '../../../contexts/Teste'
 import { Button } from '../../../components/ui/Button'
 import { Input } from '../../../components/ui/Input'
 
 export default function AddProduct() {
-  const { addProduct } = useContext(ProductContext)
+  // const { addProduct } = useContext(ProductContext)
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
@@ -23,7 +23,7 @@ export default function AddProduct() {
      event.preventDefault()
 
      if(name === '' || price === '' || quantity === ''){
-      toast.warning('Preencha todos os campos')
+      toast.warning('Preencha todos os campos!')
       return
      }
 
@@ -54,7 +54,7 @@ export default function AddProduct() {
   return (
     <>
     <Head>
-        <title> Gerenciador de Produtos</title>
+        <title>Gerenciador de Produtos</title>
     </Head>
     <div>
         Adicione seu produto aqui!
