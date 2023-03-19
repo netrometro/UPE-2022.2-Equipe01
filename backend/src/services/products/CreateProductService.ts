@@ -9,18 +9,18 @@ interface ProductDTO {
 
 export class CreateProductService {
     async execute({name, price, quantity}: ProductDTO): Promise<Product> {
-        try {
+        // try {
             // Verificar se já existe
-            const productAlreadyExists = await prismaClient.product.findUnique({
-                where: {
-                    name
-                }
-            });
+            // const productAlreadyExists = await prismaClient.product.findUnique({
+            //     where: {
+            //         name
+            //     }
+            // });
     
-            if (productAlreadyExists != null) {
-                // Erro
-                throw new Error("Este produto já está cadastrado.");
-            }
+            // if (productAlreadyExists != null) {
+            //     // Erro
+            //     throw new Error("Este produto já está cadastrado.");
+            // }
             //Criar o produto.
             const product = prismaClient.product.create({
                 data: {
@@ -32,9 +32,9 @@ export class CreateProductService {
     
             return product;
 
-        } catch(err) {
+        // } catch(err) {
             
-            throw new Error('deu erro aqui')
-        }
+        //     throw new Error('deu erro aquidddd')
+        // }
     }
 }

@@ -2,9 +2,9 @@ import { Router } from 'express'
 
 import { CreateUserController } from './controllers/user/CreateUserController'
 import { AuthUserController } from './controllers/user/AuthUserController'
-import { CreateProductController } from './controllers/user/CreateProductController'
-import { GetProductController } from './controllers/user/GetProductController'
-import { DeleteProductController } from './controllers/user/DeleteProductController'
+import { CreateProductController } from './controllers/products/CreateProductController'
+import { GetProductController } from './controllers/products/GetProductController'
+import { DeleteProductController } from './controllers/products/DeleteProductController'
 
 const router = Router()
 

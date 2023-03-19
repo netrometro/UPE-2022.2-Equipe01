@@ -13,16 +13,14 @@ import { Input } from '../../../components/ui/Input'
 export default function AddProduct() {
   const { addProduct } = useContext(ProductContext)
 
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [quantity, setquantity] = useState('')
+  const [id, setName] = useState('')
 
   const [loading, setLoading] = useState(false)
   
   async function handleProductUp(event: FormEvent) {
      event.preventDefault()
 
-     if(name === ''){
+     if(id === ''){
       toast.warning('Preencha todos os campos')
       return
      }
@@ -30,19 +28,18 @@ export default function AddProduct() {
      setLoading(true)
 
      let data = {
-      name
+      id: Number(id)
      }
 
-    //  await addProduct(data)
      try{
 
         var response = await api.delete('/api/deleteproduct', {data})
         console.log(response);
+        toast.success('Operação concluida!')
         
       } catch(err) {
         console.log({err})
      }
-
 
      setLoading(false)
 
@@ -60,7 +57,7 @@ export default function AddProduct() {
             <Input 
               placeholder='Digite o nome do produto'
               type="text"
-              value={name}
+              value={id}
               onChange={ (e) => setName(e.target.value) }
             />
             <Button

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { GetProductService } from '../../services/users/GetProductService'
+import { GetProductService } from '../../services/products/GetProductService'
 
 
 export class GetProductController {

@@ -40,7 +40,8 @@ export default function AddProduct() {
 
         var response = await api.post('/api/product', data)
         console.log(response);
-        
+        toast.success('Produto cadastrado com sucesso!')
+
       } catch(err) {
         console.log({err})
      }

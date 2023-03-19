@@ -1,5 +1,5 @@
 import e, { Request, Response } from "express";
-import { CreateProductService } from "../../services/users/CreateProductService";
+import { CreateProductService } from "../../services/products/CreateProductService";
 
 export class CreateProductController {
     async handle(req: Request, res: Response) {
