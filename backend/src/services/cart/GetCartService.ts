@@ -3,7 +3,11 @@ import prismaClient from "../../prisma";
 
 export class GetCartService {
     async execute(): Promise<Cart[]> {
-        const cart = await prismaClient.cart.findMany({});
+        const cart = await prismaClient.cart.findMany({
+            include: {
+                product: true
+            }
+        });
 
         return cart
     }
