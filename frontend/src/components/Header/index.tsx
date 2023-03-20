@@ -22,7 +22,7 @@ export default function Header() {
             <a>Categoria</a>
           </Link>
 
-          <Link href='/product' legacyBehavior>
+          <Link href='/addProduct' legacyBehavior>
             <a>Produto</a>
           </Link>
 

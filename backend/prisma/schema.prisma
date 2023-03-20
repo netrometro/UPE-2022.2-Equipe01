@@ -33,12 +33,25 @@ enum RoleEnum {
   CLIENTE
 }
 
+
+model Category{
+  id            Int @unique @id @default(autoincrement())
+  name          String
+  product       Product[]
+
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("categories")
+}
+
 model Product {
   id            Int @unique @id @default(autoincrement())
   name          String 
   price         Float
   quantity      Int
-
+  category      Category? @relation(fields: [categoryId], references: [id])
+  categoryId    Int?
   cart          Cart[]
 
   @@map("product")
