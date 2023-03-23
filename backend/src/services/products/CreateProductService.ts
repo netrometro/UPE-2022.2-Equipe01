@@ -5,7 +5,7 @@ interface ProductDTO {
     name: string;
     price: number;
     quantity: number;
-    categoryId: number
+    categoryId?: number
 }
 
 export class CreateProductService {
@@ -23,7 +23,7 @@ export class CreateProductService {
             //     throw new Error("Este produto já está cadastrado.");
             // }
             //Criar o produto.
-            const product = prismaClient.product.create({
+            const product = await prismaClient.product.create({
                 data: {
                     name,
                     price,

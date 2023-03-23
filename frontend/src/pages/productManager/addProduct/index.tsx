@@ -43,22 +43,24 @@ export default function AddProduct({ categoryList }: CategoryProps) {
     event.preventDefault()
 
     try{
-      const data = new FormData()
+      
 
       if(name === '' || price === '' || quantity === ''){
         toast.warning('Preencha todos os campos!')
         return
        }
 
-       data.append('name', name)
-       data.append('price', price)
-       data.append('quantity', quantity)
-       data.append('categoryId', categories[categorySelected].id)
+      const data = { 
+        name,
+        price: Number(price),
+        quantity: Number(quantity),
+        categoryId: Number(categories[categorySelected].id),
+       }
        
-       const apiClient = setupAPIClient()
+      const apiClient = setupAPIClient()
 
-       await apiClient.post('/api/product', data)
-       
+      await apiClient.post('/api/product', data)
+
       toast.success('Produto cadastrado com sucesso!')
 
     } catch(err) {

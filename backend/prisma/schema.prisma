@@ -37,7 +37,7 @@ enum RoleEnum {
 model Category{
   id            Int @unique @id @default(autoincrement())
   name          String
-  product       Product[]
+  products       Product[]
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
@@ -50,11 +50,13 @@ model Product {
   name          String 
   price         Float
   quantity      Int
+
   category      Category? @relation(fields: [categoryId], references: [id])
-  categoryId    Int?
+  
   cart          Cart[]
 
-  @@map("product")
+  @@map("products")
+  categoryId   Int
 }
 
 model Cart {
