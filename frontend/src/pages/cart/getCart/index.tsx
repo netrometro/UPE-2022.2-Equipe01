@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const GetCart = () => {
@@ -25,6 +26,14 @@ return (
         <p>. Preço: {cart.product.price}</p>
     </div>
     ))}
+    <Link href="/productManager/getProduct" legacyBehavior>
+        <a>
+            <button type="button">Adicionar mais produtos</button>
+        </a>
+    </Link>
+        <a>
+            <button type="button">Finalizar compra</button>
+        </a>
 </div>
 );
 };
