@@ -9,9 +9,9 @@ import { CreateCartController } from './controllers/cart/CreateCartController'
 import { GetCartController } from './controllers/cart/GetCartController'
 import { CreateCategoryController } from './controllers/category/CreateCategoryController'
 import { ListCategoryController } from './controllers/category/ListCategoryController'
+import { GetProductIdController } from './controllers/products/GetProductIdController'
 
 import AdminMiddleware from './middlewares/AdminMiddleware'
-import { GetProductIdController } from './controllers/products/GetProductIdController'
 
 const router = Router()
 
