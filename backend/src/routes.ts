@@ -11,6 +11,7 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { ListCategoryController } from './controllers/category/ListCategoryController'
 
 import AdminMiddleware from './middlewares/AdminMiddleware'
+import { GetProductIdController } from './controllers/products/GetProductIdController'
 
 const router = Router()
 
@@ -21,6 +22,7 @@ router.post('/api/login', new AuthUserController().handle)
 // Products
 router.post('/api/product', AdminMiddleware, new CreateProductController().handle)
 router.get('/api/getproducts', new GetProductsController().handle)
+router.get("/api/getproductid", new GetProductIdController().handle)
 router.delete('/api/deleteproduct', AdminMiddleware, new DeleteProductController().handle)
 
 // Cart
