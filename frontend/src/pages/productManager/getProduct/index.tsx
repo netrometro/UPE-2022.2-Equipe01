@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
 import { Button } from "../../../components/ui/Button";
+import Card from "../../../components/getProduct";
 
 const GetProducts = () => {
 const [products, setProducts] = useState([]);
@@ -27,7 +28,6 @@ return (
             <p>ID: {product.id}</p>
             <p>Price: {product.price}</p>
             <p>Quantity: {product.quantity}</p>
-
             <Link href={`/cart/addCart?id=${product.id}`} legacyBehavior>
                 <Button type="button">Adicionar ao carrinho</Button>
             </Link>
