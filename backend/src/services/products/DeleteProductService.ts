@@ -6,7 +6,7 @@ interface DeleteProductDTO {
 }
 
 export class DeleteProductService {
-    async execute({id}): Promise<Product> {
+    async execute({id}: DeleteProductDTO): Promise<Product> {
         
         // Verificar se não existe.
         const productAlreadyNotExists = await prismaClient.product.findUnique({
