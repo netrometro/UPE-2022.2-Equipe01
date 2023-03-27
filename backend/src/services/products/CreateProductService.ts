@@ -5,10 +5,11 @@ interface ProductDTO {
     name: string;
     price: number;
     quantity: number;
+    categoryId?: number
 }
 
 export class CreateProductService {
-    async execute({name, price, quantity}: ProductDTO): Promise<Product> {
+    async execute({name, price, quantity, categoryId}: ProductDTO): Promise<Product> {
         // try {
             // Verificar se já existe
             // const productAlreadyExists = await prismaClient.product.findUnique({
@@ -22,11 +23,12 @@ export class CreateProductService {
             //     throw new Error("Este produto já está cadastrado.");
             // }
             //Criar o produto.
-            const product = prismaClient.product.create({
+            const product = await prismaClient.product.create({
                 data: {
                     name,
                     price,
-                    quantity
+                    quantity,
+                    categoryId,
                 }
             });
     

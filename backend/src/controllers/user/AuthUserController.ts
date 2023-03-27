@@ -8,13 +8,14 @@ class AuthUserController {
 
       const authUserService = new AuthUserService();
 
-      const { token } = await authUserService.execute({
+      const response = await authUserService.execute({
         email,
         password,
       });
 
-      return res.json({ token });
+      return res.json(response);
     } catch (error) {
+      console.log(error)
       return res.status(500).json({ error: 'Erro interno do servidor' });
     }
   }
