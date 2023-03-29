@@ -8,6 +8,7 @@ import { DeleteProductController } from './controllers/products/DeleteProductCon
 import { CreateCartController } from './controllers/cart/CreateCartController'
 import { GetCartController } from './controllers/cart/GetCartController'
 import { GetProductIdController } from './controllers/products/GetProductIdController'
+import { UpdateProductController } from './controllers/products/UpdateProductController'
 
 const router = Router()
 
@@ -20,6 +21,7 @@ router.post('/api/product', new CreateProductController().handle)
 router.get("/api/getproducts", new GetProductsController().handle)
 router.get("/api/getproductid", new GetProductIdController().handle)
 router.delete("/api/deleteproduct", new DeleteProductController().handle)
+router.delete("/api/updateproduct", new UpdateProductController().handle)
 
 // Cart
 router.post('/api/addcart', new CreateCartController().handle)
