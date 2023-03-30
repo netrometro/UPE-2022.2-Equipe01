@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Link from 'next/link';
+import Link from 'next/link' 
 import { Button } from "../../../components/ui/Button";
 
 const GetProducts = () => {
@@ -27,6 +27,10 @@ return (
             <p>ID: {product.id}</p>
             <p>Price: {product.price}</p>
             <p>Quantity: {product.quantity}</p>
+
+            <Link href={`/productManager/getProductId/${product.id}`} legacyBehavior>
+                <Button type="button">Mais informações</Button>
+            </Link>
 
             <Link href={`/cart/addCart?id=${product.id}`} legacyBehavior>
                 <Button type="button">Adicionar ao carrinho</Button>
