@@ -35,7 +35,7 @@ router.put("/api/updateproduct", new UpdateProductController().handle)
 router.post('/api/addcart', new CreateCartController().handle)
 router.get('/api/getcart', new GetCartController().handle)
 
-// Category]
+// Category
 router.post('/api/category', new CreateCategoryController().handle)
 router.get('/api/category', new ListCategoryController().handle)
 
