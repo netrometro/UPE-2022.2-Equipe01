@@ -99,11 +99,11 @@ axios
     .get('http://localhost:3333/api/getproducts')
     .then((response) => {
     setProducts(response.data);
-    })
-    .catch((error) => {
+})
+.catch((error) => {
     console.log(error);
-    });
-    }, []);
+});
+}, []);
 
 async function handleUpdate() {
     // event.preventDefault()
@@ -160,24 +160,30 @@ async function handleUpdate() {
 return (
 <>
     <div>
-        <h1>Products</h1>
+        <h1>Catálogo de Produtos</h1>
         {products.map((product, index) => (
         <div key={index}>
             <h2>{product.name}</h2>
             <p>ID: {product.id}</p>
             <p>Price: {product.price}</p>
             <p>Quantity: {product.quantity}</p>
+                
+            <Button id="btn" type="button" onClick={handleUpdate}>Adicionar ao carrinho</Button>
 
-            <Link href={`/productManager/getProductId/${product.id}`} legacyBehavior>
-                <Button type="button">Mais informações</Button>
-            </Link>
-
-            <Link href={`/cart/addCart?id=${product.id}`} legacyBehavior>
-                <Button type="button">Adicionar ao carrinho</Button>
-            </Link>
+            <button type="button" onClick={decreaseSaboneteAroeira}>
+            -
+            </button>
+            <span>{count}</span>
+            <button type="button" onClick={addSaboneteAroeira}>
+            +
+            </button>
+                
         </div>
         ))}
+        
+        
     </div>
+
     <div>
         <Link href="/cart/getCart" legacyBehavior>
             <a>
