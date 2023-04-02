@@ -2,6 +2,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
+
 const GetCart = () => {
 const [cart, setCart] = useState([]);
 
@@ -16,7 +20,27 @@ axios
     });
     }, []);
 
+
+    function gerarPdf() {
+
+        const doc = new jsPDF("portrait","mm",[597,410]);
+    
+
+        doc.setFont('bolditalic')
+        doc.setFontSize(15)
+        doc.setTextColor(136,84,207)
+        doc.setFont(undefined, 'bold')
+    
+        doc.text('Produtos', 20, 20);
+        var incrementador = 1;
+        cart.forEach((item, index) => {
+            doc.text(`Nome: ${item.product.name}, Quantidade: ${item.quantity} unidades, Preço: ${item.price}, Id do Produto: ${item.product.id}`,20, 40 + index * 10)
+            incrementador++
+        });  doc.output("dataurlnewwindow")
+        }
+
 return (
+
 <div>
     <h1>Lista do carrinho:</h1>
     {cart.map((cart, index) => (
