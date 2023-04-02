@@ -56,7 +56,7 @@ return (
         </a>
     </Link>
         <a>
-            <button type="button">Finalizar compra</button>
+            <button onClick={gerarPdf} type="button">Finalizar compra</button>
         </a>
 </div>
 );
