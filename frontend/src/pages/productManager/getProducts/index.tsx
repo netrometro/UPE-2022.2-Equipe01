@@ -105,6 +105,58 @@ axios
     });
     }, []);
 
+async function handleUpdate() {
+    // event.preventDefault()
+
+    const id =products.map((product) => (
+        product.id
+    ))
+    const nome =products.map((product) => (
+        product.name
+    ))
+    const price =products.map((product) => (
+        product.price
+    ))
+    const quantity =products.map((product) => (
+        product.quantity - count
+    ))
+
+    const apiClient = setupAPIClient()
+
+    const produto = {
+        id: Number(id),
+        name: String(nome),
+        price: Number(price),
+        quantity: Number(quantity)
+    }
+
+    let data = {
+        productId: Number(id),
+        quantity: Number(count),
+        price: Number(produto.price*count)
+     }
+    
+
+    if (produto.quantity < 0) {
+        toast.error("Quantidade inválida!")
+    } else{
+        await apiClient.put('/api/updateproduct', produto)
+
+        try{
+
+            var response = api.post('/api/addcart', data)
+            console.log(response);
+            toast.success('Adicionado ao carrinho!')
+    
+          } catch(err) {
+            console.log({err})
+         }
+    
+    }
+    
+    
+}
+
 return (
 <>
     <div>
