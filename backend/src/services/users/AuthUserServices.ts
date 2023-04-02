@@ -1,6 +1,6 @@
 import prismaClient from '../../prisma'
 import { compare } from 'bcryptjs'
-import { sign } from 'jsonwebtoken'
+import { JwtPayload, sign, verify } from 'jsonwebtoken'
 
 interface AuthRequest {
   email: string;
@@ -28,32 +28,28 @@ class AuthUserService {
     const token = sign(
       {
         email: user.email,
+        role: user.role,
       },
       process.env.JWT_SECRET!,
       {
         subject: user.id.toString(),
-        expiresIn: '1d',
+        expiresIn: '30d',
       }
-    );
+    )
 
     return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
       token: token,
-    };
+    }
   }
 
-  async generateToken(userEmail: string, userId: number): Promise<string> {
-    const token = sign(
-      {
-        email: userEmail,
-      },
-      process.env.JWT_SECRET!,
-      {
-        subject: userId.toString(),
-        expiresIn: '1d',
-      }
-    );
+  async decryptToken(token: string){
+    const user = verify(token, process.env.JWT_SECRET) as JwtPayload
 
-    return token;
+    return user;
   }
 }
 
