@@ -1,18 +1,3 @@
-// import { Request, Response } from 'express'
-// import { DeleteProductService } from '../../services/users/DeleteProductService';
-
-// export class DeleteProductController {
-//   async handle(req: Request, res: Response) {
-//         const {id} = req.body;
-//         const deleteProductService = new DeleteProductService()
-
-//         const result = await deleteProductService.execute({id});
-
-//         return res.status(201).json(result);
-
-//   }
-// }
-
 import e, { Request, Response } from "express";
 import { DeleteProductService } from "../../services/products/DeleteProductService";
 
