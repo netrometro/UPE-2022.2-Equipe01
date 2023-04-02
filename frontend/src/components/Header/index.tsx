@@ -26,7 +26,7 @@ export default function Header() {
             <a>Produto</a>
           </Link>
 
-          <Link href='/' legacyBehavior>
+          <Link href='/productManager/getProducts' legacyBehavior>
             <a>Produto</a>
           </Link>
 
