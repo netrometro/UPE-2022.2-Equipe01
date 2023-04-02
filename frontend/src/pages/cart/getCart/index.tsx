@@ -47,7 +47,8 @@ return (
     <div key={index}>
         <h2>{cart.product.name}</h2>
         <p>. ID do produto : {cart.productId}</p>
-        <p>. Preço: {cart.product.price}</p>
+        <p>. Preço: {cart.price}</p>
+        <p>. Quantidade: {cart.quantity}</p>
     </div>
     ))}
     <Link href="/productManager/getProduct" legacyBehavior>
