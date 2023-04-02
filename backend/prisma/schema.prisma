@@ -62,7 +62,9 @@ model Product {
 model Cart {
   id            Int @id @default(autoincrement())
   product       Product @relation(fields: [productId], references: [id])
-  productId     Int 
+  productId     Int
+  price         Decimal?
+  quantity      Int?
 
   @@map("cart")
 }
