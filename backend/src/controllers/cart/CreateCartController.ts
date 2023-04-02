@@ -4,11 +4,11 @@ import { CreateCartService } from "../../services/cart/CreateCartService";
 export class CreateCartController {
     async handle(req: Request, res: Response) {
         try {
-            const {productId} = req.body;
+            const {productId, price, quantity} = req.body;
     
             const createCartServices = new CreateCartService();
     
-            const result = await createCartServices.execute({productId});
+            const result = await createCartServices.execute({productId, price, quantity});
     
             return res.status(201).json(result);
 
