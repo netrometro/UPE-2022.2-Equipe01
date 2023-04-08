@@ -23,15 +23,15 @@ export default function Header() {
           </Link>
 
           <Link href='/productManager/addProduct' legacyBehavior>
-            <a>Produto</a>
+            <a>Adicionar produto</a>
           </Link>
 
           <Link href='/productManager/getProducts' legacyBehavior>
-            <a>Produto</a>
+            <a>Catálogo</a>
           </Link>
 
-          <Link href='/' legacyBehavior>
-            <a>Produto</a>
+          <Link href='/productManager/getProductId' legacyBehavior>
+            <a>Listar por ID</a>
           </Link>
 
           <button onClick={signOut}>
