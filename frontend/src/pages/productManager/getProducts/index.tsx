@@ -78,20 +78,20 @@ function decreaseSaboneteAroeira() {
   };
 }
 
-const [count1, setCount1] = useState(0);
+// const [count1, setCount1] = useState(0);
 
-function addSaboneteAroeira2() {
+// function addSaboneteAroeira2() {
 
-    setCount1(count1 + 1);
+//     setCount1(count1 + 1);
 
-}
+// }
 
-function decreaseSaboneteAroeira2() {
+// function decreaseSaboneteAroeira2() {
 
-    if (count1 > 0) {
-        setCount1(count1 - 1);
-    }
-};
+//     if (count1 > 0) {
+//         setCount1(count1 - 1);
+//     }
+// };
 
 
 useEffect(() => {
