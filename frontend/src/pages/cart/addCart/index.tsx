@@ -6,12 +6,9 @@ import { api } from '../../../services/apiClient'
 
 
 import { toast } from 'react-toastify'
-// import { ProductContext } from '../../../contexts/Teste'
 import { Button } from '../../../components/ui/Button'
-import { Input } from '../../../components/ui/Input'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { type } from 'os'
 
 export default function AddCart() {
 

@@ -23,7 +23,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-toastify": "^9.1.1",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",

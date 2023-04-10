@@ -9,7 +9,6 @@ export default function Dashboard(){
         <>
         <Head>
             <title>Natubanho</title>
-
         </Head>
         <div>
             <Header />
