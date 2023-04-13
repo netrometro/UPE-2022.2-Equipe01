@@ -51,7 +51,7 @@ return (
         <p>. Quantidade: {cart.quantity}</p>
     </div>
     ))}
-    <Link href="/productManager/getProduct" legacyBehavior>
+    <Link href="/productManager/getProducts" legacyBehavior>
         <a>
             <button type="button">Adicionar mais produtos</button>
         </a>
