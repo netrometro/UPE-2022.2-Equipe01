@@ -9,34 +9,26 @@ import { api } from "../../../services/apiClient";
 const GetProducts = () => {
 const [products, setProducts] = useState([]);
 
-const [count, setCount] = useState(0);
+const [count, setCount] = useState<number[]>([0,0]);
 
-function addSaboneteAroeira() {
-    setCount(count + 1);
+function increaseCount(index: number) {
+    setCount(numbers => {
+        const newState = [...numbers];
+        newState[index]++;
+        return newState;
+    });
 
 }
 
-function decreaseSaboneteAroeira() {
-    if (count > 0) {
-        setCount(count - 1);
+function decreaseCount(index: number) {
+    if (count[index] > 0) {
+        setCount(numbers => {
+            const newState = [...numbers]
+            newState[index]--;
+            return newState;
+        });
   };
 }
-
-// const [count1, setCount1] = useState(0);
-
-// function addSaboneteAroeira2() {
-
-//     setCount1(count1 + 1);
-
-// }
-
-// function decreaseSaboneteAroeira2() {
-
-//     if (count1 > 0) {
-//         setCount1(count1 - 1);
-//     }
-// };
-
 
 useEffect(() => {
 axios
@@ -61,8 +53,8 @@ async function handleUpdate() {
     const price =products.map((product) => (
         product.price
     ))
-    const quantity =products.map((product) => (
-        product.quantity - count
+    const quantity =products.map((product, index) => (
+        product.quantity - count[index]
     ))
 
     const apiClient = setupAPIClient()
@@ -77,7 +69,8 @@ async function handleUpdate() {
     let data = {
         productId: Number(id),
         quantity: Number(count),
-        price: Number(produto.price*count)
+        price: Number(produto.price)
+        // price: Number(produto.price[count])
      }
     
 
@@ -114,11 +107,11 @@ return (
                 
             <Button id="btn" type="button" onClick={handleUpdate}>Adicionar ao carrinho</Button>
 
-            <button type="button" onClick={decreaseSaboneteAroeira}>
+            <button type="button" onClick={() => decreaseCount(index)}>
             -
             </button>
-            <span>{count}</span>
-            <button type="button" onClick={addSaboneteAroeira}>
+            <span>{count[index]}</span>
+            <button type="button" onClick={() => increaseCount(index)}>
             +
             </button>
                 
