@@ -27,7 +27,7 @@ router.post('/api/login', new AuthUserController().handle)
 
 router.post('/api/product', new CreateProductController().handle)
 router.get('/api/getproducts', new GetProductsController().handle)
-router.get("/api/getproductid", new GetProductIdController().handle)
+router.get("/api/getproducts/:id", new GetProductIdController().handle)
 router.delete('/api/deleteproduct', new DeleteProductController().handle)
 router.put("/api/updateproduct", new UpdateProductController().handle)
 
