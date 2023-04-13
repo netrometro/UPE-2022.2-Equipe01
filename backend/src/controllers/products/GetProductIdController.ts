@@ -8,7 +8,7 @@ export class GetProductIdController {
     
             const getProductIdServices = new GetProductIdService();
     
-            const result = await getProductIdServices.execute({id});
+            const result = await getProductIdServices.execute({id: Number(id)});
     
             return res.status(201).json(result);
 
