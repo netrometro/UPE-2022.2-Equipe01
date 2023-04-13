@@ -3,6 +3,14 @@ import React from 'react'
 import { api } from '../../../services/apiClient';
 import axios from 'axios';
 
+interface iProduct {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    categoryId: number;
+}
+
 const ProductId = () => {
     const router = useRouter();
     const { id } = router.query;
