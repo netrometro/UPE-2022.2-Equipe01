@@ -4,7 +4,7 @@ import { GetProductIdService } from "../../services/products/GetProductIdService
 export class GetProductIdController {
     async handle(req: Request, res: Response) {
         try {
-            const {id} = req.body;
+            const {id} = req.params;
     
             const getProductIdServices = new GetProductIdService();
     
