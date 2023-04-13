@@ -19,13 +19,13 @@ const ProductId = () => {
     const router = useRouter();
     const { id } = router.query;
 
-        let data = {
+    let data = {
         id: Number(id)
-        }
+    }
 
     useEffect(() => {
         const fetchProduct = async () => {
-        try{
+            try{
                 console.log(data)
                 const result = await axios.get<iProduct> (`http://localhost:3333/api/getproducts/${id}`);
                 console.log(result.data);
@@ -33,21 +33,23 @@ const ProductId = () => {
             } catch(error) {
                 console.log("Deu erro")
                 console.log(error);
-        }
+            }
         };
 
         fetchProduct();
 
     }, []);
 
-        
-    }
+
 
     return (
-        <>
+        <div>
             <h3>Listar item específico</h3>
-            <button onClick={getProductById}>teste</button>
-        </>
+            <h2>{product?.name}</h2>
+            <p>ID: {product?.id}</p>
+            <p>Price: {product?.price}</p>
+            <p>Quantity: {product?.quantity}</p>
+        </div>
     )
 }
 
