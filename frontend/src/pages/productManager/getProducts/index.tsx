@@ -114,6 +114,10 @@ return (
             <button type="button" onClick={() => increaseCount(index)}>
             +
             </button>
+
+            <Link href={`/productManager/getProductId?id=${product.id}`} legacyBehavior>
+                <Button type="button">Mais informações</Button>
+            </Link>
                 
         </div>
         ))}
