@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { api } from '../../../services/apiClient';
 import axios from 'axios';
 
@@ -12,20 +12,33 @@ interface iProduct {
 }
 
 const ProductId = () => {
+
+    const [product, setProduct] = useState<iProduct> ();
+    const [test, setTest] = useState("Testando");
+
     const router = useRouter();
     const { id } = router.query;
 
-    async function getProductById() {
         let data = {
-            id: Number(2)
+        id: Number(id)
         }
 
+    useEffect(() => {
+        const fetchProduct = async () => {
         try{
-            const response = await api.get('/api/getproductid', {data});
-            console.log(response);
-        } catch(err) {
-            console.log(err)
+                console.log(data)
+                const result = await axios.get<iProduct> (`http://localhost:3333/api/getproducts/${id}`);
+                console.log(result.data);
+                setProduct(result.data);
+            } catch(error) {
+                console.log("Deu erro")
+                console.log(error);
         }
+        };
+
+        fetchProduct();
+
+    }, []);
 
         
     }
