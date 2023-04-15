@@ -44,7 +44,7 @@ const ProductId = () => {
 
     return (
         <div>
-            <h3>Listar item específico</h3>
+            <Header/>
             <h2>{product?.name}</h2>
             <p>ID: {product?.id}</p>
             <p>Price: {product?.price}</p>
