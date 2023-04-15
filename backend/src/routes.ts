@@ -13,6 +13,7 @@ import { GetProductIdController } from './controllers/products/GetProductIdContr
 
 import AdminMiddleware from './middlewares/AdminMiddleware'
 import { UpdateProductController } from './controllers/products/UpdateProductController'
+import { GetByCategoryController } from './controllers/products/GetByCategoryController'
 
 const router = Router()
 
@@ -28,6 +29,7 @@ router.post('/api/login', new AuthUserController().handle)
 router.post('/api/product', new CreateProductController().handle)
 router.get('/api/getproducts', new GetProductsController().handle)
 router.get("/api/getproducts/:id", new GetProductIdController().handle)
+router.get("/api/getbycategory/:id", new GetByCategoryController().handle)
 router.delete('/api/deleteproduct', new DeleteProductController().handle)
 router.put("/api/updateproduct", new UpdateProductController().handle)
 
