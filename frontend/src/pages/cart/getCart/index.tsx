@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Header from "../../../components/Header";
 
 
 const GetCart = () => {
@@ -42,6 +43,7 @@ axios
 return (
 
 <div>
+    <Header/>
     <h1>Lista do carrinho:</h1>
     {cart.map((cart, index) => (
     <div key={index}>
