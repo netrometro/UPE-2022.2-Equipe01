@@ -19,19 +19,19 @@ export default function Header() {
 
         <nav className={styles.menuNav}>
           <Link href='/category' legacyBehavior>
-            <a>Categoria</a>
+            <a>Adicionar categoria</a>
           </Link>
 
           <Link href='/productManager/addProduct' legacyBehavior>
             <a>Adicionar produto</a>
           </Link>
 
-          <Link href='/productManager/getProducts' legacyBehavior>
-            <a>Catálogo</a>
+          <Link href='/cart/getCart' legacyBehavior>
+            <a>Carrinho</a>
           </Link>
 
-          <Link href='/productManager/getProductId' legacyBehavior>
-            <a>Listar por ID</a>
+          <Link href='/' legacyBehavior>
+            <a>Vazio</a>
           </Link>
 
           <button onClick={signOut}>
