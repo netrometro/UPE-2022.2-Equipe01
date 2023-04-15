@@ -3,6 +3,8 @@ import Head from 'next/head'
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import GetProducts from '../productManager/getProducts';
+import SelectList from '../../components/SelectList';
 
 export default function Dashboard(){
     return (
@@ -12,7 +14,8 @@ export default function Dashboard(){
         </Head>
         <div>
             <Header />
-            <h1>Painel</h1>
+            <SelectList/>
+            <GetProducts/>
             <Footer />
         </div>
         </>

@@ -5,38 +5,33 @@ import { Button } from "../../../components/ui/Button";
 import { setupAPIClient } from "../../../services/api";
 import { toast } from "react-toastify";
 import { api } from "../../../services/apiClient";
+import Header from "../../../components/Header";
+
+import styles from './styles.module.scss'
 
 const GetProducts = () => {
 const [products, setProducts] = useState([]);
 
-const [count, setCount] = useState(0);
+// const [count, setCount] = useState<number[]>([0,0]);
 
-function addSaboneteAroeira() {
-    setCount(count + 1);
-
-}
-
-function decreaseSaboneteAroeira() {
-    if (count > 0) {
-        setCount(count - 1);
-  };
-}
-
-// const [count1, setCount1] = useState(0);
-
-// function addSaboneteAroeira2() {
-
-//     setCount1(count1 + 1);
+// function increaseCount(index: number) {
+//     setCount(numbers => {
+//         const newState = [...numbers];
+//         newState[index]++;
+//         return newState;
+//     });
 
 // }
 
-// function decreaseSaboneteAroeira2() {
-
-//     if (count1 > 0) {
-//         setCount1(count1 - 1);
-//     }
-// };
-
+// function decreaseCount(index: number) {
+//     if (count[index] > 0) {
+//         setCount(numbers => {
+//             const newState = [...numbers]
+//             newState[index]--;
+//             return newState;
+//         });
+//   };
+// }
 
 useEffect(() => {
 axios
@@ -49,57 +44,58 @@ axios
 });
 }, []);
 
-async function handleUpdate() {
-    // event.preventDefault()
+// async function handleUpdate() {
+//     // event.preventDefault()
 
-    const id =products.map((product) => (
-        product.id
-    ))
-    const nome =products.map((product) => (
-        product.name
-    ))
-    const price =products.map((product) => (
-        product.price
-    ))
-    const quantity =products.map((product) => (
-        product.quantity - count
-    ))
+//     const id =products.map((product) => (
+//         product.id
+//     ))
+//     const nome =products.map((product) => (
+//         product.name
+//     ))
+//     const price =products.map((product) => (
+//         product.price
+//     ))
+//     const quantity =products.map((product, index) => (
+//         product.quantity - count[index]
+//     ))
 
-    const apiClient = setupAPIClient()
+//     const apiClient = setupAPIClient()
 
-    const produto = {
-        id: Number(id),
-        name: String(nome),
-        price: Number(price),
-        quantity: Number(quantity)
-    }
+//     const produto = {
+//         id: Number(id),
+//         name: String(nome),
+//         price: Number(price),
+//         quantity: Number(quantity)
+//     }
 
-    let data = {
-        productId: Number(id),
-        quantity: Number(count),
-        price: Number(produto.price*count)
-     }
+//     let data = {
+//         productId: Number(id),
+//         quantity: Number(count),
+//         price: Number(produto.price)
+//         // price: Number(produto.price*count)
+//      }
     
 
-    if (produto.quantity < 0) {
-        toast.error("Quantidade inválida!")
-    } else{
-        await apiClient.put('/api/updateproduct', produto)
+//     if (produto.quantity < 0) {
+//         toast.error("Quantidade inválida!")
+//     } else{
+//         await apiClient.put('/api/updateproduct', produto)
 
-        try{
+//         try{
 
-            var response = api.post('/api/addcart', data)
-            console.log(response);
-            toast.success('Adicionado ao carrinho!')
+//             var response = api.post('/api/addcart', data)
+//             console.log(response);
+//             toast.success('Adicionado ao carrinho!')
     
-          } catch(err) {
-            console.log({err})
-         }
+//           } catch(err) {
+//             console.log({err})
+//          }
     
-    }
+//     }
     
     
-}
+// }
 
 return (
 <>
@@ -108,33 +104,36 @@ return (
         {products.map((product, index) => (
         <div key={index}>
             <h2>{product.name}</h2>
-            <p>ID: {product.id}</p>
+            {/* <p>ID: {product.id}</p>
             <p>Price: {product.price}</p>
-            <p>Quantity: {product.quantity}</p>
+            <p>Quantity: {product.quantity}</p> */}
                 
-            <Button id="btn" type="button" onClick={handleUpdate}>Adicionar ao carrinho</Button>
+            {/* <Button id="btn" type="button" onClick={handleUpdate}>Adicionar ao carrinho</Button>
 
-            <button type="button" onClick={decreaseSaboneteAroeira}>
+            <button type="button" onClick={() => decreaseCount(index)}>
             -
             </button>
-            <span>{count}</span>
-            <button type="button" onClick={addSaboneteAroeira}>
+            <span>{count[index]}</span>
+            <button type="button" onClick={() => increaseCount(index)}>
             +
-            </button>
-                
+            </button> */}
+
+            <Link href={`/productManager/getProductId?id=${product.id}`} legacyBehavior>
+                <Button type="button">Mais informações</Button>
+            </Link>
         </div>
         ))}
         
         
     </div>
 
-    <div>
+    {/* <div>
         <Link href="/cart/getCart" legacyBehavior>
             <a>
                 <button type="button">Ver carrinho</button>
             </a>
         </Link>
-    </div>
+    </div> */}
 </>
 );
 };

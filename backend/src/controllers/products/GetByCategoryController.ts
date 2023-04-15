@@ -1,14 +1,15 @@
 import e, { Request, Response } from "express";
 import { GetProductIdService } from "../../services/products/GetProductIdService";
+import { GetByCategoryService } from "../../services/products/GetByCategoryService";
 
-export class GetProductIdController {
+export class GetByCategoryController {
     async handle(req: Request, res: Response) {
         try {
             const {id} = req.params;
     
-            const getProductIdServices = new GetProductIdService();
+            const getByCategoryService = new GetByCategoryService();
     
-            const result = await getProductIdServices.execute({id: Number(id)});
+            const result = await getByCategoryService.execute({id: Number(id)});
     
             return res.status(200).json(result);
 

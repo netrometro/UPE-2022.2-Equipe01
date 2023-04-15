@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Header from "../../../components/Header";
 
 
 const GetCart = () => {
@@ -42,6 +43,7 @@ axios
 return (
 
 <div>
+    <Header/>
     <h1>Lista do carrinho:</h1>
     {cart.map((cart, index) => (
     <div key={index}>
@@ -51,7 +53,7 @@ return (
         <p>. Quantidade: {cart.quantity}</p>
     </div>
     ))}
-    <Link href="/productManager/getProduct" legacyBehavior>
+    <Link href="/dashboard" legacyBehavior>
         <a>
             <button type="button">Adicionar mais produtos</button>
         </a>
